@@ -363,6 +363,10 @@ color:var(--muted);
 font-size:.9rem;
 }
 
+.guest2-field{
+display:none;
+}
+
 /* Mobile */
 
 @media(max-width:860px){
@@ -526,10 +530,15 @@ We would be so happy to have you with us for a cozy wedding lunch filled with lo
 
 <div class="field">
 <label>Number attending</label>
-<select name="guestCount">
+<select name="guestCount" id="guestCount">
 <option value="1">Just me</option>
-<option value="2">I'll bring 1 guest</option>
+<option value="2">I'll bring 1 human guest</option>
 </select>
+</div>
+
+<div class="field guest2-field" id="guest2Field">
+<label>Your guest's name</label>
+<input type="text" name="guestName2" placeholder="Enter your guest's name">
 </div>
 
 <div class="field">
@@ -588,6 +597,23 @@ showStatus("Something went wrong. Please try again.","error");
 }
 
 });
+
+const guestSelect = document.getElementById("guestCount");
+const guestField = document.getElementById("guest2Field");
+const guestInput = guestField.querySelector("input");
+
+guestSelect.addEventListener("change", () => {
+
+if(guestSelect.value === "2"){
+guestField.style.display = "grid";
+guestInput.required = true;
+} else {
+guestField.style.display = "none";
+guestInput.required = false;
+guestInput.value = "";
+}
+
+});    
 
 </script>
 
