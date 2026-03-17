@@ -406,7 +406,10 @@
 
           <div class="field">
             <label for="guestCount">Number attending</label>
-            <input id="guestCount" name="guestCount" type="number" min="1" max="10" value="1" required />
+            <input id="guestCount" name="guestCount" type="number" min="1" max="2" value="1" required />
+            <p style="font-size:0.9rem;color:#888;">
+              Each invitation allows up to 2 guests.
+              </p>
           </div>
 
           <div class="field">
@@ -416,8 +419,6 @@
 
           <button class="btn btn-primary" type="submit">Send RSVP</button>
           <div class="fineprint">
-            This form is designed to work with a Google Sheets + Apps Script backend.
-            Replace the <code>SCRIPT_URL</code> in the JavaScript with your deployed web app URL.
           </div>
           <div id="formStatus" class="status" aria-live="polite"></div>
         </form>
