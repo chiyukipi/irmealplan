@@ -33,9 +33,9 @@
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, #fffaf8 0%, transparent 26%),
-        radial-gradient(circle at top right, #fff1dc 0%, transparent 22%),
-        linear-gradient(180deg, #fffaf4 0%, #fff7ee 100%);
+        radial-gradient(circle at top left, rgba(207, 238, 228, 0.75) 0%, transparent 28%),
+        radial-gradient(circle at top right, rgba(99, 194, 162, 0.18) 0%, transparent 24%),
+        linear-gradient(180deg, #f4fbf9 0%, #eaf7f2 100%);
       min-height: 100vh;
     }
 
@@ -45,8 +45,8 @@
     }
 
     .hero {
-      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,248,239,0.92));
-      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(232, 248, 242, 0.95));
+      border: 1px solid rgba(79, 168, 125, 0.18);
       border-radius: 36px;
       box-shadow: var(--shadow);
       padding: 30px;
@@ -75,7 +75,7 @@
     .hero::after {
       width: 220px;
       height: 220px;
-      background: var(47,156,149,0.15);
+      background: rgba(47,156,149,0.15);
       right: -60px;
       bottom: -60px;
     }
@@ -166,11 +166,11 @@
     }
 
     .cat-card {
-      background: rgba(255,255,255,0.66);
-      border: 1px solid rgba(255,255,255,0.75);
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(228,244,238,0.9));
+      border: 1px solid rgba(79, 168, 125, 0.16);
       border-radius: 26px;
       padding: 12px;
-      box-shadow: 0 12px 24px rgba(98, 73, 44, 0.08);
+      box-shadow: 0 12px 24px rgba(31, 92, 85, 0.10);
       backdrop-filter: blur(6px);
     }
 
@@ -197,8 +197,8 @@
     }
 
     .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(232,248,242,0.88));
+      border: 1px solid rgba(79, 168, 125, 0.18);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 24px;
@@ -217,8 +217,8 @@
     .detail-item {
       padding: 14px 16px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid var(--line);
+      background: rgba(230, 246, 240, 0.82);
+      border: 1px solid rgba(79, 168, 125, 0.16);
     }
 
     .detail-label {
@@ -251,8 +251,8 @@
 
     input, select, textarea {
       width: 100%;
-      border: 1px solid rgba(91,74,63,0.16);
-      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(79, 168, 125, 0.18);
+      background: rgba(245, 252, 249, 0.98);
       border-radius: 16px;
       padding: 14px 14px;
       font: inherit;
