@@ -573,30 +573,30 @@ We would be so happy to have you with us for a cozy wedding lunch filled with lo
 </div>
 
 <div class="field">
-<label>Will you be joining us?</label>
-<select name="attendance" required>
-<option value="">Select one</option>
-<option value="Yes">Yes, with delight</option>
-<option value="No">Sorry, I can’t make it</option>
-</select>
+  <label for="attendance">Will you be joining us?</label>
+  <select id="attendance" name="attendance" required>
+    <option value="">Select one</option>
+    <option value="Yes">Yes, with delight</option>
+    <option value="No">Sorry, I can’t make it</option>
+  </select>
 </div>
 
-<div class="field">
-<label>Number attending</label>
-<select name="guestCount" id="guestCount">
-<option value="1">Just me</option>
-<option value="2">I'll bring 1 human guest</option>
-</select>
+<div class="field" id="guestCountField" style="display:none;">
+  <label for="guestCount">Number attending</label>
+  <select id="guestCount" name="guestCount">
+    <option value="1">Just me</option>
+    <option value="2">I'll bring 1 human guest</option>
+  </select>
 </div>
 
-<div class="field guest2-field" id="guest2Field">
-<label>Your guest's name</label>
-<input type="text" name="guestName2" placeholder="Enter your guest's name">
+<div class="field guest2-field" id="guest2Field" style="display:none;">
+  <label for="guestName2">Your guest's name</label>
+  <input type="text" id="guestName2" name="guestName2" placeholder="Enter your guest's name">
 </div>
 
-<div class="field">
+<div class="field" id="messageField">
 <label>Message for the couple</label>
-<textarea name="message"></textarea>
+<textarea name="message" id="messageBox" placeholder="Optional message for the couple"></textarea>
 </div>
 
 <button class="btn btn-primary">Send RSVP</button>
@@ -619,65 +619,131 @@ Made with love, lunch, and two very excellent future cats.
 
 const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwzrcqCtd8zoDUCCQNYfjPqjX9aMvroKEg-PzMR1FFLIrEzOlkzfYZw9lKMPpw3to5h/exec";
 
-const form=document.getElementById("rsvpForm");
-const statusBox=document.getElementById("formStatus");
+const form = document.getElementById("rsvpForm");
+const statusBox = document.getElementById("formStatus");
+
+const attendanceSelect = document.getElementById("attendance");
+
+const guestCountField = document.getElementById("guestCountField");
+const guestSelect = document.getElementById("guestCount");
+
+const guestField = document.getElementById("guest2Field");
+const guestInput = document.getElementById("guestName2");
+
+const messageField = document.getElementById("messageField");
+const messageBox = document.getElementById("messageBox");
+
+const submitButton = form.querySelector("button[type='submit']");
 
 function showStatus(msg,type){
-statusBox.textContent=msg;
-statusBox.className="status show "+type;
+  statusBox.textContent = msg;
+  statusBox.className = "status show " + type;
 }
+
+function updateGuestFields(){
+
+  // If attending
+  if(attendanceSelect.value === "Yes"){
+
+    guestCountField.style.display = "grid";
+    messageField.style.display = "grid";
+    messageBox.placeholder = "Message for the couple (Optional)";
+
+    if(guestSelect.value === "2"){
+      guestField.style.display = "grid";
+      guestInput.required = true;
+    }else{
+      guestField.style.display = "none";
+      guestInput.required = false;
+      guestInput.value = "";
+    }
+
+  }
+
+  // If not attending
+  else if(attendanceSelect.value === "No"){
+
+    guestCountField.style.display = "none";
+    guestField.style.display = "none";
+
+    guestInput.required = false;
+    guestInput.value = "";
+
+    // Message still visible so they can send wishes
+    messageField.style.display = "grid";
+    messageBox.placeholder = "Send us your well wishes ❤";
+
+  }
+
+  // If nothing selected yet
+  else{
+
+    guestCountField.style.display = "none";
+    guestField.style.display = "none";
+    messageField.style.display = "none";
+
+  }
+
+}
+
+attendanceSelect.addEventListener("change", updateGuestFields);
+guestSelect.addEventListener("change", updateGuestFields);
 
 form.addEventListener("submit",async e=>{
-e.preventDefault();
 
-const formData=new FormData(form);
+  e.preventDefault();
 
-try{
+  submitButton.disabled = true;
+  submitButton.textContent = "Sending RSVP...";
 
-await fetch(SCRIPT_URL,{
-method:"POST",
-body:formData,
-mode:"no-cors"
+  const formData = new FormData(form);
+
+  // Force guest count to 0 if not attending
+  if(attendanceSelect.value === "No"){
+    formData.set("guestCount","0");
+    formData.set("guestName2","");
+  }
+
+  try{
+
+    await fetch(SCRIPT_URL,{
+      method:"POST",
+      body:formData,
+      mode:"no-cors"
+    });
+
+    showStatus("Thank you! Your RSVP has been sent.","success");
+
+    const overlay = document.getElementById("rsvpSuccessOverlay");
+
+    overlay.classList.add("show");
+
+    setTimeout(()=>{
+      overlay.classList.remove("show");
+    },2000);
+
+    form.reset();
+
+    guestCountField.style.display = "none";
+    guestField.style.display = "none";
+    messageField.style.display = "none";
+
+    guestInput.value = "";
+    guestInput.required = false;
+
+  }catch(err){
+
+    showStatus("Something went wrong. Please try again.","error");
+
+  }
+
+  submitButton.disabled = false;
+  submitButton.textContent = "Send RSVP";
+
 });
 
-showStatus("Thank you! Your RSVP has been sent.","success");
-const overlay = document.getElementById("rsvpSuccessOverlay");
-
-overlay.classList.add("show");
-
-setTimeout(()=>{
-overlay.classList.remove("show");
-},2000);
-form.reset();
-
-guestField.style.display = "none";
-guestInput.value = "";
-guestInput.required = false;
-
-}catch(err){
-
-showStatus("Something went wrong. Please try again.","error");
-
-}
-
-});
-
-const guestSelect = document.getElementById("guestCount");
-const guestField = document.getElementById("guest2Field");
-const guestInput = guestField.querySelector("input");
-
-guestSelect.addEventListener("change", () => {
-
-if (guestSelect.value === "2") {
-  guestField.style.display = "grid";
-  guestInput.required = true;
-} else {
-  guestField.style.display = "none";
-  guestInput.required = false;
-  guestInput.value = "";
-}
-
-});    
+// Initialize form state
+updateGuestFields();  
 
 </script>
 
