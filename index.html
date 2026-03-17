@@ -650,6 +650,10 @@ overlay.classList.remove("show");
 },2000);
 form.reset();
 
+guestField.style.display = "none";
+guestInput.value = "";
+guestInput.required = false;
+
 }catch(err){
 
 showStatus("Something went wrong. Please try again.","error");
@@ -664,13 +668,13 @@ const guestInput = guestField.querySelector("input");
 
 guestSelect.addEventListener("change", () => {
 
-if(guestSelect.value === "2"){
-guestField.style.display = "grid";
-guestInput.required = true;
+if (guestSelect.value === "2") {
+  guestField.style.display = "grid";
+  guestInput.required = true;
 } else {
-guestField.style.display = "none";
-guestInput.required = false;
-guestInput.value = "";
+  guestField.style.display = "none";
+  guestInput.required = false;
+  guestInput.value = "";
 }
 
 });    
