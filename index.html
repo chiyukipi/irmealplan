@@ -169,7 +169,7 @@
     .cats-wrap {
       display: flex;
       justify-content: center;
-      align-items: end;
+      align-items: center;
       gap: 18px;
       padding: 20px 0 0;
     }
@@ -329,18 +329,18 @@
     
       .cats-wrap {
         justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-wrap: nowrap;
+        gap: 10px;
         padding-top: 8px;
       }
     
       .cat-card {
         padding: 8px;
       }
-    
+      
       .cat-img {
-        width: min(38vw, 170px);
-        height: min(38vw, 170px);
+        width: min(40vw, 150px);
+        height: min(40vw, 150px);
       }
     
       h1 {
@@ -357,11 +357,7 @@
     }
 
     @media (max-width: 520px) {
-    .cats-wrap {
-      flex-direction: column;
-      align-items: center;
-    }
-  
+      
     .cat-img {
       width: 160px;
       height: 160px;
