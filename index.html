@@ -599,7 +599,7 @@ We would be so happy to have you with us for a cozy wedding lunch filled with lo
 <textarea name="message" id="messageBox" placeholder="Optional message for the couple"></textarea>
 </div>
 
-<button class="btn btn-primary">Send RSVP</button>
+<button type="submit" class="btn btn-primary">Send RSVP</button>
 
 <div id="formStatus" class="status"></div>
 
@@ -633,7 +633,7 @@ const guestInput = document.getElementById("guestName2");
 const messageField = document.getElementById("messageField");
 const messageBox = document.getElementById("messageBox");
 
-const submitButton = form.querySelector("button[type='submit']");
+const submitButton = form.querySelector("button");
 
 function showStatus(msg,type){
   statusBox.textContent = msg;
