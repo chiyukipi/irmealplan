@@ -1,539 +1,558 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Lunch Invitation</title>
-  <style>
-    :root {
-      --bg: #f4fbf9;
-      --card: rgba(255,255,255,0.9);
-    
-      --ink: #1f3d3a;
-      --muted: #5c7c78;
-    
-      /* main theme colours */
-      --teal: #2f9c95;
-      --teal-deep: #1f6f69;
-    
-      --green: #4fa87d;
-      --green-soft: #cfeee4;
-    
-      --accent: #63c2a2;
-    
-      --line: rgba(31, 61, 58, 0.12);
-      --shadow: 0 18px 50px rgba(31, 92, 85, 0.15);
-      --radius: 28px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Lunch Invitation</title>
 
-    * { box-sizing: border-box; }
+<style>
 
-    body {
-      margin: 0;
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at top left, rgba(207, 238, 228, 0.75) 0%, transparent 28%),
-        radial-gradient(circle at top right, rgba(99, 194, 162, 0.18) 0%, transparent 24%),
-        linear-gradient(180deg, #f4fbf9 0%, #eaf7f2 100%);
-      min-height: 100vh;
-    }
+:root{
+--bg:#f4fbf9;
+--ink:#1f3d3a;
+--muted:#5c7c78;
 
-    .page {
-      width: min(1100px, calc(100% - 32px));
-      margin: 24px auto 48px;
-    }
+--teal:#2f9c95;
+--teal-deep:#1f6f69;
 
-    .hero {
-      background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(232, 248, 242, 0.95));
-      border: 1px solid rgba(79, 168, 125, 0.18);
-      border-radius: 36px;
-      box-shadow: var(--shadow);
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
+--green:#4fa87d;
+--green-soft:#cfeee4;
 
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(8px);
-      opacity: 0.45;
-      pointer-events: none;
-    }
+--accent:#63c2a2;
 
-    .hero::before {
-      width: 180px;
-      height: 180px;
-      background: var(--green-soft);
-      top: -40px;
-      left: -40px;
-    }
+--line:rgba(31,61,58,0.12);
+--shadow:0 18px 50px rgba(31,92,85,0.15);
+--radius:28px;
+}
 
-    .hero::after {
-      width: 220px;
-      height: 220px;
-      background: rgba(47,156,149,0.15);
-      right: -60px;
-      bottom: -60px;
-    }
+*{box-sizing:border-box}
 
-    .top-note {
-      display: inline-block;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(79,168,125,0.18);
-      color: var(--teal-deep);
-      font-size: 0.95rem;
-      letter-spacing: 0.03em;
-      margin-bottom: 14px;
-    }
+body{
+margin:0;
+font-family:"Trebuchet MS","Segoe UI",sans-serif;
+color:var(--ink);
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 28px;
-      align-items: center;
-    }
-    .hero,
-    .hero-grid,
-    .hero-grid > div {
-      min-width: 0;
-    }
-    
-    .hero-grid > * {
-      min-width: 0;
-    }
+background:
+radial-gradient(circle at top left, rgba(207,238,228,0.75) 0%, transparent 28%),
+radial-gradient(circle at top right, rgba(99,194,162,0.18) 0%, transparent 24%),
+linear-gradient(180deg,#f4fbf9 0%,#eaf7f2 100%);
 
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
-      line-height: 0.96;
-      margin: 0 0 14px;
-      letter-spacing: -0.03em;
-    }
+min-height:100vh;
+}
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 100%;
-      margin-bottom: 22px;
-    }
+.page{
+width:min(1100px,calc(100% - 32px));
+margin:24px auto 48px;
+}
 
-    .names {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--teal-deep);
-    }
+.hero{
+background:linear-gradient(145deg,rgba(255,255,255,0.9),rgba(232,248,242,0.95));
+border:1px solid rgba(79,168,125,0.18);
+border-radius:36px;
+box-shadow:var(--shadow);
+padding:30px;
+position:relative;
+overflow:hidden;
+}
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 20px;
-    }
+.hero::before,
+.hero::after{
+content:"";
+position:absolute;
+border-radius:999px;
+filter:blur(8px);
+opacity:.45;
+pointer-events:none;
+}
 
-    .btn {
-      appearance: none;
-      border: 0;
-      text-decoration: none;
-      cursor: pointer;
-      padding: 14px 18px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.98rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
+.hero::before{
+width:180px;
+height:180px;
+background:var(--green-soft);
+top:-40px;
+left:-40px;
+}
 
-    .btn:hover { transform: translateY(-1px); }
+.hero::after{
+width:220px;
+height:220px;
+background:rgba(47,156,149,0.15);
+right:-60px;
+bottom:-60px;
+}
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--teal), var(--green));
-      color: white;
-      box-shadow: 0 10px 24px rgba(47,156,149,0.35);
-    }
+.top-note{
+display:inline-block;
+padding:8px 14px;
+border-radius:999px;
+background:rgba(79,168,125,0.18);
+color:var(--teal-deep);
+font-size:.95rem;
+margin-bottom:14px;
+}
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.88);
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
+.hero-grid{
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:28px;
+align-items:center;
+}
 
-    .cats-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 18px;
-      padding: 20px 0 0;
-      position: relative;
-    }
+.hero,
+.hero-grid,
+.hero-grid > div{
+min-width:0;
+}
 
-    .cats-wrap::before {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      background: radial-gradient(circle, rgba(99,194,162,0.25) 0%, transparent 70%);
-      border-radius: 50%;
-      filter: blur(20px);
-      z-index: -1;
-    }
+.names{
+font-size:clamp(1.2rem,3vw,1.8rem);
+font-weight:700;
+margin-bottom:10px;
+color:var(--teal-deep);
+}
 
-    .hero-text,
-    .hero-cats {
-      min-width: 0;
-    }
+h1{
+font-size:clamp(2.2rem,5vw,4.5rem);
+line-height:.96;
+margin:0 0 14px;
+letter-spacing:-.02em;
+font-weight:800;
+}
 
-    .cat-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(228,244,238,0.9));
-      border: 1px solid rgba(79, 168, 125, 0.16);
-      border-radius: 26px;
-      padding: 12px;
-      box-shadow: 0 12px 24px rgba(31, 92, 85, 0.10);
-      backdrop-filter: blur(6px);
-    }
+.subtitle{
+font-size:1.1rem;
+color:var(--muted);
+line-height:1.7;
+margin-bottom:22px;
+}
 
-        .cat-img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      border-radius: 50%;
-      background: #ffffff;
-    }
+.hero-divider{
+width:80px;
+height:4px;
+border-radius:2px;
+background:linear-gradient(90deg,var(--teal),var(--green));
+margin:18px 0 8px;
+}
 
-    svg.cat {
-      width: min(240px, 100%);
-      height: auto;
-      display: block;
-    }
+.hero-actions{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:20px;
+}
 
-    .main-grid {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 24px;
-      margin-top: 24px;
-    }
+.btn{
+appearance:none;
+border:0;
+text-decoration:none;
+cursor:pointer;
+padding:14px 18px;
+border-radius:999px;
+font-weight:700;
+font-size:.98rem;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+}
 
-    .panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(232,248,242,0.88));
-      border: 1px solid rgba(79, 168, 125, 0.18);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px;
-    }
+.btn-primary{
+background:linear-gradient(135deg,var(--teal),var(--green));
+color:white;
+box-shadow:0 10px 24px rgba(47,156,149,.35);
+}
 
-    .panel h2 {
-      margin: 0 0 16px;
-      font-size: 1.45rem;
-    }
+.btn-secondary{
+background:rgba(255,255,255,.88);
+color:var(--ink);
+border:1px solid var(--line);
+}
 
-    .details {
-      display: grid;
-      gap: 14px;
-    }
+/* Cats */
 
-    .detail-item {
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(230, 246, 240, 0.82);
-      border: 1px solid rgba(79, 168, 125, 0.16);
-    }
+.cats-wrap{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px 0 0;
+position:relative;
+}
 
-    .detail-label {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
+.cats-wrap::before{
+content:"";
+position:absolute;
+width:280px;
+height:280px;
+background:radial-gradient(circle,rgba(99,194,162,.25) 0%,transparent 70%);
+border-radius:50%;
+filter:blur(20px);
+z-index:0;
+}
 
-    .detail-value {
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
+.cat-pair{
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+z-index:1;
+}
 
-    form {
-      display: grid;
-      gap: 14px;
-    }
+.cat-left{
+transform:rotate(-4deg);
+margin-right:-18px;
+z-index:2;
+}
 
-    .field {
-      display: grid;
-      gap: 8px;
-    }
+.cat-right{
+transform:rotate(4deg);
+}
 
-    label {
-      font-weight: 700;
-      font-size: 0.96rem;
-    }
+.cat-heart{
+position:absolute;
+font-size:1.4rem;
+color:var(--teal);
+top:50%;
+left:50%;
+transform:translate(-50%,-58%);
+z-index:3;
 
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid rgba(79, 168, 125, 0.18);
-      background: rgba(245, 252, 249, 0.98);
-      border-radius: 16px;
-      padding: 14px 14px;
-      font: inherit;
-      color: var(--ink);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
+background:rgba(255,255,255,.92);
+width:34px;
+height:34px;
+border-radius:50%;
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 4px rgba(47,156,149,0.15);
-    }
+display:flex;
+align-items:center;
+justify-content:center;
 
-    textarea { min-height: 110px; resize: vertical; }
+box-shadow:0 6px 16px rgba(31,92,85,.12);
+}
 
-    .fineprint {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-top: 4px;
-    }
+.cat-card{
+background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(228,244,238,.9));
+border:1px solid rgba(79,168,125,.16);
+border-radius:26px;
+padding:12px;
+box-shadow:0 12px 24px rgba(31,92,85,.10);
+}
 
-    .status {
-      margin-top: 8px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-size: 0.95rem;
-      display: none;
-    }
+.cat-img{
+width:220px;
+height:220px;
+object-fit:cover;
+border-radius:50%;
+display:block;
+background:white;
+}
 
-    .status.show { display: block; }
-    .status.success { background: rgba(217, 230, 213, 0.8); color: #45623f; }
-    .status.error { background: rgba(245, 223, 228, 0.9); color: #8c4d5a; }
+/* Main grid */
 
-    .footer-note {
-      text-align: center;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    
-    .hero-divider {
-      width: 80px;
-      height: 4px;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--teal), var(--green));
-      margin: 18px 0 8px;
-    }
+.main-grid{
+display:grid;
+grid-template-columns:.9fr 1.1fr;
+gap:24px;
+margin-top:24px;
+}
 
-    @media (max-width: 860px) {
-      .hero-grid,
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-    
-      .hero-grid > * {
-        min-width: 0;
-      }
-    
-      .hero {
-        padding: 22px;
-      }
-    
-      .page {
-        width: min(100% - 20px, 1100px);
-        margin-top: 10px;
-      }
-    
-      .cats-wrap {
-        justify-content: center;
-        flex-wrap: nowrap;
-        gap: 10px;
-        padding-top: 8px;
-      }
-    
-      .cat-card {
-        padding: 8px;
-      }
-      
-      .cat-img {
-        width: min(40vw, 150px);
-        height: min(40vw, 150px);
-      }
-    
-      h1 {
-        font-size: clamp(2.2rem, 5vw, 4.5rem);
-        line-height: 0.96;
-        margin: 0 0 14px;
-        letter-spacing: -0.02em;
-        font-weight: 800;
-      }
-    
-      .subtitle,
-      .names,
-      .top-note {
-        max-width: 100%;
-      }
-    }
+.panel{
+background:linear-gradient(180deg,rgba(255,255,255,.92),rgba(232,248,242,.88));
+border:1px solid rgba(79,168,125,.18);
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+padding:24px;
+}
 
-    @media (max-width: 520px) {
-      
-    .cat-img {
-      width: 160px;
-      height: 160px;
-    }
-  
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-  
-    .hero-actions .btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
-  </style>
+.panel h2{
+margin:0 0 16px;
+font-size:1.45rem;
+}
+
+.details{
+display:grid;
+gap:14px;
+}
+
+.detail-item{
+padding:14px 16px;
+border-radius:18px;
+background:rgba(230,246,240,.82);
+border:1px solid rgba(79,168,125,.16);
+}
+
+.detail-label{
+font-size:.82rem;
+text-transform:uppercase;
+letter-spacing:.08em;
+color:var(--muted);
+margin-bottom:6px;
+}
+
+.detail-value{
+font-size:1.05rem;
+font-weight:700;
+}
+
+form{
+display:grid;
+gap:14px;
+}
+
+.field{
+display:grid;
+gap:8px;
+}
+
+label{
+font-weight:700;
+font-size:.96rem;
+}
+
+input,select,textarea{
+width:100%;
+border:1px solid rgba(79,168,125,.18);
+background:rgba(245,252,249,.98);
+border-radius:16px;
+padding:14px;
+font:inherit;
+color:var(--ink);
+}
+
+textarea{
+min-height:110px;
+resize:vertical;
+}
+
+.status{
+margin-top:8px;
+padding:12px 14px;
+border-radius:14px;
+font-size:.95rem;
+display:none;
+}
+
+.status.show{display:block}
+.status.success{background:#d9e6d5}
+.status.error{background:#f5dfe4}
+
+.footer-note{
+text-align:center;
+margin-top:18px;
+color:var(--muted);
+font-size:.9rem;
+}
+
+/* Mobile */
+
+@media(max-width:860px){
+
+.hero-grid,
+.main-grid{
+grid-template-columns:1fr;
+}
+
+.hero{
+padding:22px;
+}
+
+.cat-img{
+width:min(40vw,150px);
+height:min(40vw,150px);
+}
+
+}
+
+@media(max-width:520px){
+
+.cat-left,
+.cat-right{
+transform:none;
+margin-right:0;
+}
+
+.cat-img{
+width:140px;
+height:140px;
+}
+
+.hero-actions{
+flex-direction:column;
+}
+
+.hero-actions .btn{
+width:100%;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <section class="hero">
-      <div class="top-note">A little invitation to our wedding lunch</div>
-      <div class="hero-grid">
-        <div class="hero-text">
-          <div class="names">Isaac &amp; Raudhah</div>
-          <h1>Come celebrate with us.</h1>
-          <p class="subtitle">
-            We would be so happy to have you with us for a cozy wedding lunch filled with love,
-            laughter, and two very important future cats.
-          </p>
-          <div class="hero-divider"></div>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#rsvp">RSVP Now</a>
-            <a class="btn btn-secondary" href="#details">View Details</a>
-          </div>
-        </div>
 
-        <div class="cats-wrap hero-cats" aria-label="Cartoon wedding cats">
-          <div class="cat-card">
-        <img src="images/Milk.png" alt="White ragdoll cat" class="cat-img" />
-          </div>
-          <div class="cat-card">
-        <img src="images/Cookie.png" alt="Golden British shorthair cat" class="cat-img" />
-          </div>
-        </div>
-      </div>
-    </section>
+<div class="page">
 
-    <section class="main-grid">
-      <div class="panel" id="details">
-        <h2>Wedding Lunch Details</h2>
-        <div class="details">
-          <div class="detail-item">
-            <div class="detail-label">Date</div>
-            <div class="detail-value">[Saturday, 4 July 2026]</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Time</div>
-            <div class="detail-value">[12:00 PM to 3:00 PM]</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Venue</div>
-            <div class="detail-value">[Venue Name, Address]</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">Dress Code</div>
-            <div class="detail-value">[Anything comfortable!]</div>
-          </div>
-          <div class="detail-item">
-            <div class="detail-label">A little note</div>
-            <div class="detail-value">This is a buffet lunch so come with an empty stomach!</div>
-          </div>
-        </div>
-      </div>
+<section class="hero">
 
-      <div class="panel" id="rsvp">
-        <h2>RSVP</h2>
-        <form id="rsvpForm">
-          <div class="field">
-            <label for="guestName">Your name</label>
-            <input id="guestName" name="name" type="text" placeholder="Enter your full name" required />
-          </div>
+<div class="top-note">A little invitation to our wedding lunch</div>
 
-          <div class="field">
-            <label for="attendance">Will you be joining us?</label>
-            <select id="attendance" name="attendance" required>
-              <option value="">Select one</option>
-              <option value="Yes">Yes, with delight</option>
-              <option value="No">Sorry, I can’t make it</option>
-            </select>
-          </div>
+<div class="hero-grid">
 
-          <div class="field">
-            <label for="guestCount">Number attending</label>
-            <select id="guestCount" name="guestCount" required>
-                    <option value="1">Just me</option>
-                    <option value="2">I'll bring 1 human guest</option>
-                  </select>
-            <p style="font-size:0.9rem;color:#888;">
-              Each invitation allows up to 2 guests.
-              </p>
-          </div>
+<div class="hero-text">
 
-          <div class="field">
-            <label for="message">Message for the couple</label>
-            <textarea id="message" name="message" placeholder="Optional"></textarea>
-          </div>
+<div class="names">Isaac &amp; Raudhah</div>
 
-          <button class="btn btn-primary" type="submit">Send RSVP</button>
-          <div class="fineprint">
-          </div>
-          <div id="formStatus" class="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </section>
+<h1>Come celebrate with us.</h1>
 
-    <p class="footer-note">Made with love, lunch, and two very excellent future cats.</p>
-  </div>
+<p class="subtitle">
+We would be so happy to have you with us for a cozy wedding lunch filled with love, laughter, and two very important future cats.
+</p>
 
-  <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz3zuoW1M_yracVVOAFVMMhCCOX5nNBqMOULyNnyuZm5V_Gn_rPHAFsd7RxBHqGuDShoQ/exec";
-    const form = document.getElementById("rsvpForm");
-    const statusBox = document.getElementById("formStatus");
+<div class="hero-divider"></div>
 
-    function showStatus(message, type) {
-      statusBox.textContent = message;
-      statusBox.className = `status show ${type}`;
-    }
+<div class="hero-actions">
+<a class="btn btn-primary" href="#rsvp">RSVP Now</a>
+<a class="btn btn-secondary" href="#details">View Details</a>
+</div>
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+</div>
 
-      if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
-        showStatus("Add your Google Apps Script web app URL first, then your RSVPs can flutter into Google Sheets.", "error");
-        return;
-      }
+<div class="cats-wrap">
 
-      const formData = new FormData(form);
-      formData.append("submittedAt", new Date().toISOString());
+<div class="cat-pair">
 
-      try {
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          body: formData,
-          mode: "no-cors"
-        });
+<div class="cat-card cat-left">
+<img src="images/Milk.png" class="cat-img">
+</div>
 
-        showStatus("Thank you! Your RSVP has been sent.", "success");
-        form.reset();
-        document.getElementById("guestCount").value = 1;
-      } catch (error) {
-        showStatus("Something went a little sideways while sending your RSVP. Please try again.", "error");
-        console.error(error);
-      }
-    });
-  </script>
+<div class="cat-heart">❤</div>
+
+<div class="cat-card cat-right">
+<img src="images/Cookie.png" class="cat-img">
+</div>
+
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="main-grid">
+
+<div class="panel" id="details">
+
+<h2>Wedding Lunch Details</h2>
+
+<div class="details">
+
+<div class="detail-item">
+<div class="detail-label">Date</div>
+<div class="detail-value">Saturday, 4 July 2026</div>
+</div>
+
+<div class="detail-item">
+<div class="detail-label">Time</div>
+<div class="detail-value">12:00 PM to 3:00 PM</div>
+</div>
+
+<div class="detail-item">
+<div class="detail-label">Venue</div>
+<div class="detail-value">[Venue Name, Address]</div>
+</div>
+
+<div class="detail-item">
+<div class="detail-label">Dress Code</div>
+<div class="detail-value">Anything comfortable!</div>
+</div>
+
+</div>
+</div>
+
+<div class="panel" id="rsvp">
+
+<h2>RSVP</h2>
+
+<form id="rsvpForm">
+
+<div class="field">
+<label>Your name</label>
+<input name="name" required>
+</div>
+
+<div class="field">
+<label>Will you be joining us?</label>
+<select name="attendance" required>
+<option value="">Select one</option>
+<option value="Yes">Yes, with delight</option>
+<option value="No">Sorry, I can’t make it</option>
+</select>
+</div>
+
+<div class="field">
+<label>Number attending</label>
+<select name="guestCount">
+<option value="1">Just me</option>
+<option value="2">I'll bring 1 guest</option>
+</select>
+</div>
+
+<div class="field">
+<label>Message</label>
+<textarea name="message"></textarea>
+</div>
+
+<button class="btn btn-primary">Send RSVP</button>
+
+<div id="formStatus" class="status"></div>
+
+</form>
+
+</div>
+
+</section>
+
+<p class="footer-note">
+Made with love, lunch, and two very excellent future cats.
+</p>
+
+</div>
+
+<script>
+
+const SCRIPT_URL="PASTE_YOUR_GOOGLE_SCRIPT_URL";
+
+const form=document.getElementById("rsvpForm");
+const statusBox=document.getElementById("formStatus");
+
+function showStatus(msg,type){
+statusBox.textContent=msg;
+statusBox.className="status show "+type;
+}
+
+form.addEventListener("submit",async e=>{
+e.preventDefault();
+
+const formData=new FormData(form);
+
+try{
+
+await fetch(SCRIPT_URL,{
+method:"POST",
+body:formData,
+mode:"no-cors"
+});
+
+showStatus("Thank you! Your RSVP has been sent.","success");
+form.reset();
+
+}catch(err){
+
+showStatus("Something went wrong. Please try again.","error");
+
+}
+
+});
+
+</script>
+
 </body>
 </html>
