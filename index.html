@@ -6,17 +6,23 @@
   <title>Wedding Lunch Invitation</title>
   <style>
     :root {
-      --bg: #fffaf4;
-      --card: rgba(255,255,255,0.86);
-      --ink: #5b4a3f;
-      --muted: #8e7b70;
-      --gold: #d9b35f;
-      --gold-deep: #b98b2f;
-      --blush: #f5dfe4;
-      --sage: #d9e6d5;
-      --cream: #fff3dd;
-      --line: rgba(91,74,63,0.12);
-      --shadow: 0 18px 50px rgba(94, 70, 42, 0.12);
+      --bg: #f4fbf9;
+      --card: rgba(255,255,255,0.9);
+    
+      --ink: #1f3d3a;
+      --muted: #5c7c78;
+    
+      /* main theme colours */
+      --teal: #2f9c95;
+      --teal-deep: #1f6f69;
+    
+      --green: #4fa87d;
+      --green-soft: #cfeee4;
+    
+      --accent: #63c2a2;
+    
+      --line: rgba(31, 61, 58, 0.12);
+      --shadow: 0 18px 50px rgba(31, 92, 85, 0.15);
       --radius: 28px;
     }
 
@@ -61,7 +67,7 @@
     .hero::before {
       width: 180px;
       height: 180px;
-      background: var(--blush);
+      background: var(--green-soft);
       top: -40px;
       left: -40px;
     }
@@ -69,7 +75,7 @@
     .hero::after {
       width: 220px;
       height: 220px;
-      background: var(--cream);
+      background: var(47,156,149,0.15);
       right: -60px;
       bottom: -60px;
     }
@@ -78,8 +84,8 @@
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(217, 179, 95, 0.16);
-      color: var(--gold-deep);
+      background: rgba(79,168,125,0.18);
+      color: var(--teal-deep);
       font-size: 0.95rem;
       letter-spacing: 0.03em;
       margin-bottom: 14px;
@@ -111,7 +117,7 @@
       font-size: clamp(1.2rem, 3vw, 1.8rem);
       font-weight: 700;
       margin-bottom: 10px;
-      color: var(--gold-deep);
+      color: var(--teal-deep);
     }
 
     .hero-actions {
@@ -140,9 +146,9 @@
     .btn:hover { transform: translateY(-1px); }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--gold), #efc978);
+      background: linear-gradient(135deg, var(--teal), var(--green));
       color: white;
-      box-shadow: 0 10px 24px rgba(185, 139, 47, 0.28);
+      box-shadow: 0 10px 24px rgba(47,156,149,0.35);
     }
 
     .btn-secondary {
@@ -247,8 +253,8 @@
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: rgba(185,139,47,0.65);
-      box-shadow: 0 0 0 4px rgba(217,179,95,0.15);
+      border-color: var(--teal);
+      box-shadow: 0 0 0 4px rgba(47,156,149,0.15);
     }
 
     textarea { min-height: 110px; resize: vertical; }
@@ -302,11 +308,11 @@
       <div class="top-note">A little invitation to our wedding lunch</div>
       <div class="hero-grid">
         <div>
-          <div class="names">[Your Name] &amp; [Partner Name]</div>
+          <div class="names">Isaac &amp; Raudhah</div>
           <h1>Come celebrate with us.</h1>
           <p class="subtitle">
             We would be so happy to have you with us for a cozy wedding lunch filled with love,
-            laughter, and two very important cartoon cats.
+            laughter, and two very important future cats.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#rsvp">RSVP Now</a>
@@ -406,7 +412,10 @@
 
           <div class="field">
             <label for="guestCount">Number attending</label>
-            <input id="guestCount" name="guestCount" type="number" min="1" max="2" value="1" required />
+            <select id="guestCount" name="guestCount" required>
+                    <option value="1">Just me</option>
+                    <option value="2">I'll bring 1 human guest</option>
+                  </select>
             <p style="font-size:0.9rem;color:#888;">
               Each invitation allows up to 2 guests.
               </p>
@@ -425,7 +434,7 @@
       </div>
     </section>
 
-    <p class="footer-note">Made with love, lunch, and two very excellent cats.</p>
+    <p class="footer-note">Made with love, lunch, and two future very excellent cats.</p>
   </div>
 
   <script>
