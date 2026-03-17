@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Lunch Invitation</title>
+  <style>
+    :root {
+      --bg: #fffaf4;
+      --card: rgba(255,255,255,0.86);
+      --ink: #5b4a3f;
+      --muted: #8e7b70;
+      --gold: #d9b35f;
+      --gold-deep: #b98b2f;
+      --blush: #f5dfe4;
+      --sage: #d9e6d5;
+      --cream: #fff3dd;
+      --line: rgba(91,74,63,0.12);
+      --shadow: 0 18px 50px rgba(94, 70, 42, 0.12);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fffaf8 0%, transparent 26%),
+        radial-gradient(circle at top right, #fff1dc 0%, transparent 22%),
+        linear-gradient(180deg, #fffaf4 0%, #fff7ee 100%);
+      min-height: 100vh;
+    }
+
+    .page {
+      width: min(1100px, calc(100% - 32px));
+      margin: 24px auto 48px;
+    }
+
+    .hero {
+      background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(255,248,239,0.92));
+      border: 1px solid var(--line);
+      border-radius: 36px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(8px);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 180px;
+      height: 180px;
+      background: var(--blush);
+      top: -40px;
+      left: -40px;
+    }
+
+    .hero::after {
+      width: 220px;
+      height: 220px;
+      background: var(--cream);
+      right: -60px;
+      bottom: -60px;
+    }
+
+    .top-note {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(217, 179, 95, 0.16);
+      color: var(--gold-deep);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 14px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      line-height: 0.96;
+      margin: 0 0 14px;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 22px;
+    }
+
+    .names {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--gold-deep);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      text-decoration: none;
+      cursor: pointer;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #efc978);
+      color: white;
+      box-shadow: 0 10px 24px rgba(185, 139, 47, 0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.88);
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .cats-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      gap: 18px;
+      padding: 20px 0 0;
+    }
+
+    .cat-card {
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(255,255,255,0.75);
+      border-radius: 26px;
+      padding: 12px;
+      box-shadow: 0 12px 24px rgba(98, 73, 44, 0.08);
+      backdrop-filter: blur(6px);
+    }
+
+    svg.cat {
+      width: min(240px, 100%);
+      height: auto;
+      display: block;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .panel h2 {
+      margin: 0 0 16px;
+      font-size: 1.45rem;
+    }
+
+    .details {
+      display: grid;
+      gap: 14px;
+    }
+
+    .detail-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+    }
+
+    .detail-label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .detail-value {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.96rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(91,74,63,0.16);
+      background: rgba(255,255,255,0.96);
+      border-radius: 16px;
+      padding: 14px 14px;
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(185,139,47,0.65);
+      box-shadow: 0 0 0 4px rgba(217,179,95,0.15);
+    }
+
+    textarea { min-height: 110px; resize: vertical; }
+
+    .fineprint {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-top: 4px;
+    }
+
+    .status {
+      margin-top: 8px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .status.show { display: block; }
+    .status.success { background: rgba(217, 230, 213, 0.8); color: #45623f; }
+    .status.error { background: rgba(245, 223, 228, 0.9); color: #8c4d5a; }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 860px) {
+      .hero-grid,
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .page {
+        width: min(100% - 20px, 1100px);
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="top-note">A little invitation to our wedding lunch</div>
+      <div class="hero-grid">
+        <div>
+          <div class="names">[Your Name] &amp; [Partner Name]</div>
+          <h1>Come celebrate with us.</h1>
+          <p class="subtitle">
+            We would be so happy to have you with us for a cozy wedding lunch filled with love,
+            laughter, and two very important cartoon cats.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#rsvp">RSVP Now</a>
+            <a class="btn btn-secondary" href="#details">View Details</a>
+          </div>
+        </div>
+
+        <div class="cats-wrap" aria-label="Cartoon wedding cats">
+          <div class="cat-card">
+            <svg class="cat" viewBox="0 0 220 240" role="img" aria-label="White ragdoll cat cartoon">
+              <ellipse cx="110" cy="205" rx="58" ry="20" fill="#f2e9dc" opacity="0.55"/>
+              <path d="M74 87 L88 52 L108 84" fill="#f7f4ef" stroke="#b9b0a7" stroke-width="4"/>
+              <path d="M146 87 L132 52 L112 84" fill="#f7f4ef" stroke="#b9b0a7" stroke-width="4"/>
+              <circle cx="110" cy="104" r="48" fill="#fffdf9" stroke="#b9b0a7" stroke-width="4"/>
+              <ellipse cx="84" cy="105" rx="9" ry="12" fill="#8ec7d8"/>
+              <ellipse cx="136" cy="105" rx="9" ry="12" fill="#8ec7d8"/>
+              <circle cx="84" cy="106" r="3" fill="#473d37"/>
+              <circle cx="136" cy="106" r="3" fill="#473d37"/>
+              <ellipse cx="110" cy="122" rx="11" ry="8" fill="#e7b7b7"/>
+              <path d="M98 134 Q110 144 122 134" stroke="#6d5d55" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M53 175 Q69 150 90 164" fill="#fffdf9" stroke="#b9b0a7" stroke-width="4"/>
+              <path d="M167 175 Q151 150 130 164" fill="#fffdf9" stroke="#b9b0a7" stroke-width="4"/>
+              <ellipse cx="110" cy="186" rx="44" ry="52" fill="#fffdf9" stroke="#b9b0a7" stroke-width="4"/>
+              <ellipse cx="110" cy="168" rx="18" ry="10" fill="#f1e7d9"/>
+              <path d="M77 183 Q110 216 143 183" stroke="#d9b35f" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <circle cx="110" cy="186" r="4" fill="#d9b35f"/>
+              <path d="M62 170 Q38 165 30 134" stroke="#d7cdc0" stroke-width="12" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="cat-card">
+            <svg class="cat" viewBox="0 0 220 240" role="img" aria-label="Golden British shorthair cat cartoon">
+              <ellipse cx="110" cy="205" rx="58" ry="20" fill="#eadbb8" opacity="0.6"/>
+              <path d="M74 87 L88 52 L108 84" fill="#e9c97a" stroke="#aa8242" stroke-width="4"/>
+              <path d="M146 87 L132 52 L112 84" fill="#e9c97a" stroke="#aa8242" stroke-width="4"/>
+              <circle cx="110" cy="104" r="48" fill="#f0cb73" stroke="#aa8242" stroke-width="4"/>
+              <ellipse cx="84" cy="105" rx="9" ry="12" fill="#5f4a2f"/>
+              <ellipse cx="136" cy="105" rx="9" ry="12" fill="#5f4a2f"/>
+              <circle cx="84" cy="106" r="3" fill="#201812"/>
+              <circle cx="136" cy="106" r="3" fill="#201812"/>
+              <ellipse cx="110" cy="122" rx="11" ry="8" fill="#d99b8d"/>
+              <path d="M98 134 Q110 143 122 134" stroke="#5a4635" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M53 175 Q69 150 90 164" fill="#f0cb73" stroke="#aa8242" stroke-width="4"/>
+              <path d="M167 175 Q151 150 130 164" fill="#f0cb73" stroke="#aa8242" stroke-width="4"/>
+              <ellipse cx="110" cy="186" rx="44" ry="52" fill="#f0cb73" stroke="#aa8242" stroke-width="4"/>
+              <ellipse cx="110" cy="171" rx="18" ry="10" fill="#f4e0aa"/>
+              <path d="M110 154 L126 172 L110 172 L94 172 Z" fill="#ffffff" opacity="0.9"/>
+              <path d="M62 170 Q38 165 30 134" stroke="#d5ab59" stroke-width="12" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-grid">
+      <div class="panel" id="details">
+        <h2>Wedding Lunch Details</h2>
+        <div class="details">
+          <div class="detail-item">
+            <div class="detail-label">Date</div>
+            <div class="detail-value">[Saturday, 12 December 2026]</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Time</div>
+            <div class="detail-value">[12:00 PM to 3:00 PM]</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Venue</div>
+            <div class="detail-value">[Venue Name, Address]</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Dress Code</div>
+            <div class="detail-value">[Pastels / Garden / Smart Casual]</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">A little note</div>
+            <div class="detail-value">We can’t wait to celebrate this sweet little chapter with you.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="rsvp">
+        <h2>RSVP</h2>
+        <form id="rsvpForm">
+          <div class="field">
+            <label for="guestName">Your name</label>
+            <input id="guestName" name="name" type="text" placeholder="Enter your full name" required />
+          </div>
+
+          <div class="field">
+            <label for="attendance">Will you be joining us?</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Select one</option>
+              <option value="Yes">Yes, with delight</option>
+              <option value="No">Sorry, I can’t make it</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="guestCount">Number attending</label>
+            <input id="guestCount" name="guestCount" type="number" min="1" max="10" value="1" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message for the couple</label>
+            <textarea id="message" name="message" placeholder="Optional"></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send RSVP</button>
+          <div class="fineprint">
+            This form is designed to work with a Google Sheets + Apps Script backend.
+            Replace the <code>SCRIPT_URL</code> in the JavaScript with your deployed web app URL.
+          </div>
+          <div id="formStatus" class="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <p class="footer-note">Made with love, lunch, and two very excellent cats.</p>
+  </div>
+
+  <script>
+    const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+    const form = document.getElementById("rsvpForm");
+    const statusBox = document.getElementById("formStatus");
+
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = `status show ${type}`;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!SCRIPT_URL || SCRIPT_URL.includes("PASTE_YOUR")) {
+        showStatus("Add your Google Apps Script web app URL first, then your RSVPs can flutter into Google Sheets.", "error");
+        return;
+      }
+
+      const formData = new FormData(form);
+      formData.append("submittedAt", new Date().toISOString());
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        });
+
+        showStatus("Thank you! Your RSVP has been sent.", "success");
+        form.reset();
+        document.getElementById("guestCount").value = 1;
+      } catch (error) {
+        showStatus("Something went a little sideways while sending your RSVP. Please try again.", "error");
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
