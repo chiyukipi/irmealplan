@@ -582,10 +582,21 @@ We would be so happy to have you with us for a cozy wedding lunch filled with lo
 </div>
 
 <div class="field" id="guestCountField" style="display:none;">
-  <label for="guestCount">Number attending</label>
+  <label for="guestCount">Number of big humans attending</label>
   <select id="guestCount" name="guestCount">
     <option value="1">Just me</option>
     <option value="2">I'll bring 1 human guest</option>
+  </select>
+</div>
+
+<div class="field" id="childrenCountField" style="display:none;">
+  <label for="childrenCount">Number of smol humans attending</label>
+  <select id="childrenCount" name="childrenCount">
+    <option value="0">No children</option>
+    <option value="1">1 child</option>
+    <option value="2">2 children</option>
+    <option value="3">3 children</option>
+    <option value="4">4 children</option>
   </select>
 </div>
 
@@ -627,6 +638,9 @@ const attendanceSelect = document.getElementById("attendance");
 const guestCountField = document.getElementById("guestCountField");
 const guestSelect = document.getElementById("guestCount");
 
+const childrenCountField = document.getElementById("childrenCountField");
+const childrenCount = document.getElementById("childrenCount");
+
 const guestField = document.getElementById("guest2Field");
 const guestInput = document.getElementById("guestName2");
 
@@ -646,6 +660,7 @@ function updateGuestFields(){
   if(attendanceSelect.value === "Yes"){
 
     guestCountField.style.display = "grid";
+    childrenCountField.style.display = "grid";
     messageField.style.display = "grid";
     messageBox.placeholder = "(Optional)";
 
@@ -666,6 +681,9 @@ function updateGuestFields(){
     guestCountField.style.display = "none";
     guestField.style.display = "none";
 
+    childrenCountField.style.display = "none";
+    childrenCount.value = "0";
+
     guestInput.required = false;
     guestInput.value = "";
 
@@ -679,6 +697,8 @@ function updateGuestFields(){
   else{
 
     guestCountField.style.display = "none";
+    childrenCountField.style.display = "none";
+    childrenCount.value = "0";
     guestField.style.display = "none";
     messageField.style.display = "none";
 
@@ -702,6 +722,7 @@ form.addEventListener("submit",async e=>{
   if(attendanceSelect.value === "No"){
     formData.set("guestCount","0");
     formData.set("guestName2","");
+    formData.set("childrenCount","0");
   }
 
   try{
@@ -727,6 +748,8 @@ form.addEventListener("submit",async e=>{
     guestCountField.style.display = "none";
     guestField.style.display = "none";
     messageField.style.display = "none";
+    childrenCountField.style.display = "none";
+    childrenCount.value = "0";
 
     guestInput.value = "";
     guestInput.required = false;
